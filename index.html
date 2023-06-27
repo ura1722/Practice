@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Меню</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container px-0 rounded pb-5  ml-2 mr-2">
+        <header class="rounded-top d-flex align-items-center justify-content-between px-5">
+          <div class="logo d-flex align-items-center">
+            <img src="logo.png" alt="Пицца" height="50px" width="50px">
+            <div class="logo_text ms-3">
+                <h2>Pizzeria</h2>
+                <h4>найсмачніша піца тільки у нас</h4>
+            </div>
+          </div>
+            <div id="cart" class="d-flex text-white">
+              <div class="price  d-flex align-items-center justify-content-center">
+                <span id="total-price">0</span>₴
+              </div>
+              <div class="count  d-flex align-items-center justify-content-center">
+                <span><span id="cart-count">0</span> шт</span>
+              </div>
+               
+            </div>
+          </header>
+          <div class="filter  px-5 pt-5 pt-lg-0 pb-5 pb-lg-0 d-flex align-items-center justify-content-lg-between flex-column flex-lg-row">
+            <div class="filt">
+              <button class="btn btn-primary filter-btn" onclick="filterPizzas('all')">Всі</button>
+              <button class="btn btn-primary filter-btn" onclick="filterPizzas('meat')">Мясні</button>
+              <button class="btn btn-primary filter-btn" onclick="filterPizzas('vegan')">Вегетеріанські</button>
+              <button class="btn btn-primary filter-btn" onclick="filterPizzas('grill')">Гриль</button>
+              <button class="btn btn-primary filter-btn" onclick="filterPizzas('hot')">Гострі</button>
+              <button class="btn btn-primary filter-btn" onclick="filterPizzas('closed')">Закриті</button>
+            </div>
+            <div class="sort d-flex align-items-center">
+              <p class="mb-0">Сортувати по:</p>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn rounded-0 btn-primary dropdown-toggle-no-caret" data-bs-toggle="dropdown" aria-expanded="false">
+                  популярності
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#"  onclick="updateDropdown('популярності')">популярності</a></li>
+                  <li><a class="dropdown-item" href="#"  onclick="updateDropdown('зростанню')">зростанню</a></li>
+                  <li><a class="dropdown-item" href="#"  onclick="updateDropdown('спаданню')">спаданню</a></li>
+                </ul>
+              </div>
+            </div>
+              
+          </div>
+          <div id="menu" class="d-flex w-100 flex-column align-items-center justify-content-center">
+            <h2  class="text-lg-start text-center w-100 ps-lg-5 ps-0" ><span id="filter_pizza">Всі</span> піци</h2>
+            <div class="cont d-flex flex-wrap" id="cont_"> 
+              <div class="pizza hot" data-popularity="10">
+                <img src="pepperoni-fresh.png" alt="Пицца 1">
+                <h2>Пепероні Фреш з перцем</h2>
+                <div class="pref rounded d-flex flex-column align-items-center justify-content-between">
+                  <div class="btn-group mt-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio1" id="btnradio1" autocomplete="off" checked data-price="0">
+                    <label class="btn rounded" for="btnradio1">Тонка</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio1" id="btnradio2" autocomplete="off" data-price="15">
+                    <label class="btn  ms-3 rounded" for="btnradio2">Традиційна</label>
+                  </div>
+              
+                  <div class="btn-group_2 mb-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio2" id="btnradio3" autocomplete="off" checked data-price="0">
+                    <label class="btn  rounded" for="btnradio3">26</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio2" id="btnradio4" autocomplete="off" data-price="20">
+                    <label class="btn  ms-2 rounded" for="btnradio4">30</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio2" id="btnradio5" autocomplete="off" data-price="40">
+                    <label class="btn  ms-2 rounded" for="btnradio5">40</label>
+                  </div>
+                </div>
+                <div class="pick d-flex align-items-center justify-content-between">
+                  <p data-price="165">від 165₴</p>
+                  <button >Добавити</button>
+                </div>
+              </div>
+              
+              <div class="pizza meat" data-popularity="9">
+                <img src="cheese.png" alt="Пицца 2">
+                <h2>Сирна</h2>
+                <div class="pref rounded d-flex flex-column align-items-center justify-content-between">
+                  <div class="btn-group mt-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio3" id="btnradio6" autocomplete="off" checked data-price="0">
+                    <label class="btn rounded" for="btnradio6">Тонка</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio3" id="btnradio7" autocomplete="off" data-price="20">
+                    <label class="btn  ms-3 rounded" for="btnradio7">Традиційна</label>
+                  </div>
+              
+                  <div class="btn-group_2 mb-1 d-flex justify-content-around w-100" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio4" id="btnradio8" autocomplete="off" checked data-price="0">
+                    <label class="btn  rounded" for="btnradio8">26</label>
+              
+              
+                    <input type="radio" class="btn-check" name="btnradio4" id="btnradio9" autocomplete="off" data-price="40">
+                    <label class="btn  ms-2 rounded" for="btnradio9">40</label>
+                  </div>
+                </div>
+                <div class="pick d-flex align-items-center justify-content-between">
+                  <p data-price="120">від 120₴</p>
+                  <button >Добавити</button>
+                </div>
+              </div>
+
+              <div class="pizza grill" data-popularity="8">
+                <img src="barbecue.png" alt="Пицца 3">
+                <h2>Курча барбекю</h2>
+                <div class="pref rounded d-flex flex-column align-items-center justify-content-between">
+                  <div class="btn-group mt-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio5" id="btnradio10" autocomplete="off" checked data-price="0">
+                    <label class="btn rounded" for="btnradio10">Тонка</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio5" id="btnradio11" autocomplete="off" data-price="15">
+                    <label class="btn  ms-3 rounded" for="btnradio11">Традиційна</label>
+                  </div>
+              
+                  <div class="btn-group_2 mb-1 d-flex justify-content-around w-100" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio6" id="btnradio12" autocomplete="off" checked data-price="0">
+                    <label class="btn  rounded" for="btnradio12">26</label>
+              
+              
+                    <input type="radio" class="btn-check" name="btnradio6" id="btnradio13" autocomplete="off" data-price="40">
+                    <label class="btn  ms-2 rounded" for="btnradio13">40</label>
+                  </div>
+                </div>
+                <div class="pick d-flex align-items-center justify-content-between">
+                  <p data-price="170">від 170₴</p>
+                  <button >Добавити</button>
+                </div>
+              </div>
+
+              <div class="pizza meat" data-popularity="7">
+                <img src="sweet-and-sour-chicken.png" alt="Пицца 4">
+                <h2>Кисло-солодке курча</h2>
+                <div class="pref rounded d-flex flex-column align-items-center justify-content-between">
+                  <div class="btn-group mt-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio7" id="btnradio14" autocomplete="off" checked data-price="0">
+                    <label class="btn rounded" for="btnradio14">Тонка</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio7" id="btnradio15" autocomplete="off" data-price="15">
+                    <label class="btn  ms-3 rounded" for="btnradio15">Традиційна</label>
+                  </div>
+              
+                  <div class="btn-group_2 mb-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio8" id="btnradio16" autocomplete="off" checked data-price="0">
+                    <label class="btn  rounded" for="btnradio16">26</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio8" id="btnradio17" autocomplete="off" data-price="20">
+                    <label class="btn  ms-2 rounded" for="btnradio17">30</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio8" id="btnradio18" autocomplete="off" data-price="40">
+                    <label class="btn  ms-2 rounded" for="btnradio18">40</label>
+                  </div>
+                </div>
+                <div class="pick d-flex align-items-center justify-content-between">
+                  <p data-price="140">від 140₴</p>
+                  <button >Добавити</button>
+                </div>
+              </div>
+
+              <div class="pizza grill" data-popularity="6">
+                <img src="cheeseburger-pizza.png" alt="Пицца 5">
+                <h2>Чізбургер-піца</h2>
+                <div class="pref rounded d-flex flex-column align-items-center justify-content-between">
+                  <div class="btn-group mt-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio9" id="btnradio19" autocomplete="off" checked data-price="0">
+                    <label class="btn rounded" for="btnradio19">Тонка</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio9" id="btnradio20" autocomplete="off" data-price="20">
+                    <label class="btn  ms-3 rounded" for="btnradio20">Традиційна</label>
+                  </div>
+              
+                  <div class="btn-group_2 mb-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio10" id="btnradio21" autocomplete="off" checked data-price="0">
+                    <label class="btn  rounded" for="btnradio21">26</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio10" id="btnradio22" autocomplete="off" data-price="20">
+                    <label class="btn  ms-2 rounded" for="btnradio22">30</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio10" id="btnradio23" autocomplete="off" data-price="35">
+                    <label class="btn  ms-2 rounded" for="btnradio23">40</label>
+                  </div>
+                </div>
+                <div class="pick d-flex align-items-center justify-content-between">
+                  <p data-price="165">від 165₴</p>
+                  <button >Добавити</button>
+                </div>
+              </div>
+
+              <div class="pizza meat" data-popularity="5">
+                <img src="crazy-pepperoni.png" alt="Пицца 6">
+                <h2>Крейзі пепероні</h2>
+                <div class="pref rounded d-flex flex-column align-items-center justify-content-between">
+                  <div class="btn-group mt-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio11" id="btnradio24" autocomplete="off" checked data-price="0">
+                    <label class="btn rounded" for="btnradio24">Тонка</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio11" id="btnradio25" autocomplete="off" data-price="20">
+                    <label class="btn  ms-3 rounded" for="btnradio25">Традиційна</label>
+                  </div>
+              
+                  <div class="btn-group_2 mb-1 d-flex justify-content-around w-100" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio12" id="btnradio26" autocomplete="off" checked data-price="0">
+                    <label class="btn  rounded" for="btnradio26">26</label>
+              
+              
+                    <input type="radio" class="btn-check" name="btnradio12" id="btnradio27" autocomplete="off" data-price="40">
+                    <label class="btn  ms-2 rounded" for="btnradio27">40</label>
+                  </div>
+                </div>
+                <div class="pick d-flex align-items-center justify-content-between">
+                  <p data-price="180">від 180₴</p>
+                  <button >Добавити</button>
+                </div>
+              </div>
+
+              <div class="pizza meat" data-popularity="4">
+                <img src="pepperoni.png" alt="Пицца 7">
+                <h2>Пепероні</h2>
+                <div class="pref rounded d-flex flex-column align-items-center justify-content-between">
+                  <div class="btn-group mt-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio13" id="btnradio28" autocomplete="off" checked data-price="0">
+                    <label class="btn rounded" for="btnradio28">Тонка</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio13" id="btnradio29" autocomplete="off" data-price="15">
+                    <label class="btn  ms-3 rounded" for="btnradio29">Традиційна</label>
+                  </div>
+              
+                  <div class="btn-group_2 mb-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio14" id="btnradio30" autocomplete="off" checked data-price="0">
+                    <label class="btn  rounded" for="btnradio30">26</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio14" id="btnradio31" autocomplete="off" data-price="20">
+                    <label class="btn  ms-2 rounded" for="btnradio31">30</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio14" id="btnradio32" autocomplete="off" data-price="40">
+                    <label class="btn  ms-2 rounded" for="btnradio32">40</label>
+                  </div>
+                </div>
+                <div class="pick d-flex align-items-center justify-content-between">
+                  <p data-price="150">від 150₴</p>
+                  <button >Добавити</button>
+                </div>
+              </div>
+
+              <div class="pizza meat" data-popularity="3">
+                <img src="margarita.png" alt="Пицца 8">
+                <h2>Маргарита</h2>
+                <div class="pref rounded d-flex flex-column align-items-center justify-content-between">
+                  <div class="btn-group mt-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio15" id="btnradio33" autocomplete="off" checked data-price="0">
+                    <label class="btn rounded" for="btnradio33">Тонка</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio15" id="btnradio34" autocomplete="off" data-price="15">
+                    <label class="btn  ms-3 rounded" for="btnradio34">Традиційна</label>
+                  </div>
+              
+                  <div class="btn-group_2 mb-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio16" id="btnradio35" autocomplete="off" checked data-price="0">
+                    <label class="btn  rounded" for="btnradio35">26</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio16" id="btnradio36" autocomplete="off" data-price="20">
+                    <label class="btn  ms-2 rounded" for="btnradio36">30</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio16" id="btnradio37" autocomplete="off" data-price="30">
+                    <label class="btn  ms-2 rounded" for="btnradio37">40</label>
+                  </div>
+                </div>
+                <div class="pick d-flex align-items-center justify-content-between">
+                  <p data-price="125">від 125₴</p>
+                  <button >Добавити</button>
+                </div>
+              </div>
+
+              <div class="pizza meat" data-popularity="2">
+                <img src="four-seasons.png" alt="Пицца 9">
+                <h2>Чотири сезона</h2>
+                <div class="pref rounded d-flex flex-column align-items-center justify-content-between">
+                  <div class="btn-group mt-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio17" id="btnradio38" autocomplete="off" checked data-price="0">
+                    <label class="btn rounded" for="btnradio38">Тонка</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio17" id="btnradio39" autocomplete="off" data-price="15">
+                    <label class="btn  ms-3 rounded" for="btnradio39">Традиційна</label>
+                  </div>
+              
+                  <div class="btn-group_2 mb-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio18" id="btnradio40" autocomplete="off" checked data-price="0">
+                    <label class="btn  rounded" for="btnradio40">26</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio18" id="btnradio41" autocomplete="off" data-price="20">
+                    <label class="btn  ms-2 rounded" for="btnradio41">30</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio18" id="btnradio42" autocomplete="off" data-price="40">
+                    <label class="btn  ms-2 rounded" for="btnradio42">40</label>
+                  </div>
+                </div>
+                <div class="pick d-flex align-items-center justify-content-between">
+                  <p data-price="155">від 155₴</p>
+                  <button >Добавити</button>
+                </div>
+              </div>
+
+              <div class="pizza vegan" data-popularity="1">
+                <img src="vegetables-and-mushrooms.png" alt="Пицца 10">
+                <h2>Овочі та гриби 🌱</h2>
+                <div class="pref rounded d-flex flex-column align-items-center justify-content-between">
+                  <div class="btn-group mt-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio19" id="btnradio43" autocomplete="off" checked data-price="0">
+                    <label class="btn rounded" for="btnradio43">Тонка</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio19" id="btnradio44" autocomplete="off" data-price="15">
+                    <label class="btn  ms-3 rounded" for="btnradio44">Традиційна</label>
+                  </div>
+              
+                  <div class="btn-group_2 mb-1" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio20" id="btnradio45" autocomplete="off" checked data-price="0">
+                    <label class="btn  rounded" for="btnradio45">26</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio20" id="btnradio46" autocomplete="off" data-price="20">
+                    <label class="btn  ms-2 rounded" for="btnradio46">30</label>
+              
+                    <input type="radio" class="btn-check" name="btnradio20" id="btnradio47" autocomplete="off" data-price="30">
+                    <label class="btn  ms-2 rounded" for="btnradio47">40</label>
+                  </div>
+                </div>
+                <div class="pick d-flex align-items-center justify-content-between">
+                  <p data-price="115">від 115₴</p>
+                  <button >Добавити</button>
+                </div>
+              </div>
+              
+            </div>
+            
+            
+            </div>
+    </div>
+  
+  
+  <script src="script.js"></script>
+</body>
+</html>
